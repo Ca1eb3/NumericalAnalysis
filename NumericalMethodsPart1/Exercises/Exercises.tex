@@ -1,0 +1,274 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,graphicx,enumitem}
+\usepackage{tikz, mathtools}
+\usetikzlibrary{patterns}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem*{problem}{Problem}
+\newtheorem*{solution}{Solution}
+
+
+\begin{document}
+
+\section*{Problem Set Ch-1}
+
+\begin{problem}{1.2}
+    Prove that similar matrices have the same spectrum of eigenvalues.
+\end{problem}
+
+\begin{solution}
+    
+\end{solution}
+
+\begin{problem}{1.7}
+    Consider the matrix $\mathbf{A}$ that maps $\mathbb{R}^3$ into $\mathbb{R}^2$:
+
+    \begin{center}
+        \begin{math}
+            \mathbf{A}= 
+                \begin{bmatrix*}[r]
+                        4 & -3 \\
+                        -2 & 6 \\
+                        4 & 6 \\ 
+                \end{bmatrix*}
+        \end{math}
+    \end{center}
+
+    \begin{enumerate}[label=\alph*.]
+        \item Compute the SVD of $\mathbf{A}$ by hand and use it to find the null space of $\mathbf{A}$.
+    \end{enumerate}
+
+\end{problem}
+
+\begin{solution}
+    The SVD of $\mathbf{A}$ is given by $\mathbf{\Sigma} = \mathbf{U}^{H}\mathbf{A}\mathbf{V}$.
+    Where $\mathbf{U}$ is the matrix of eigenvectors of 
+
+    \begin{center}
+        \begin{math}
+            \mathbf{A}\mathbf{A}^{H}= 
+                \begin{bmatrix*}[r]
+                        25 & -26 & -2 \\
+                        -26 & 40 & 28 \\
+                        -2 & 28 & 52 \\ 
+                \end{bmatrix*}
+        \end{math}
+    \end{center}
+
+    and $\mathbf{V}$ is the matrix of eigenvectors of
+
+    \begin{center}
+        \begin{math}
+            \mathbf{A}^{H}\mathbf{A}= 
+                \begin{bmatrix*}[r]
+                        28 & 0 \\
+                        0 & 83 \\
+                \end{bmatrix*}
+        \end{math}.
+    \end{center}
+
+    The eigenvalues of $\mathbf{A}\mathbf{A}^{H}$ are given by
+
+    \begin{center}
+        \begin{math}
+            \left\lvert \mathbf{A}\mathbf{A}^{H} - \lambda\mathbf{I} \right\rvert = 
+                \begin{vmatrix*}[r]
+                        25-\lambda & -26 & -2 \\
+                        -26 & 40-\lambda & 28 \\
+                        -2 & 28 & 52-\lambda \\ 
+                \end{vmatrix*}
+                = -\lambda^{3}+117\lambda^{2}-2916\lambda = -\lambda(\lambda - 36)(\lambda - 81)= 0.
+        \end{math}
+    \end{center}
+
+    Thus, $\lambda = 0$, $\lambda = 36$, or $\lambda = 81$. Then $\sigma_1 = \sqrt{36} = 6$
+    and $\sigma_1 = \sqrt{81} = 9$ and 
+
+    \begin{center}
+        \begin{math}
+            \mathbf{\Sigma} = 
+                \begin{bmatrix*}[r]
+                    9 & 0 \\
+                    0 & 6 \\
+                    0 & 0 \\ 
+                \end{bmatrix*}.
+        \end{math}
+    \end{center}
+
+    When $\lambda = 0$,
+    
+    \begin{center}
+        \begin{math}
+            (\mathbf{A}\mathbf{A}^{H} - \lambda\mathbf{I})\mathbf{x} = 
+                \begin{bmatrix*}[r]
+                    25 & -26 & -2 \\
+                    -26 & 40 & 28 \\
+                    -2 & 28 & 52 \\ 
+                \end{bmatrix*} \mathbf{x}
+                =\mathbf{0}.
+        \end{math}
+    \end{center}
+
+    Using row reduction we find $\mathbf{x} =     
+    \begin{bmatrix*}[r]
+        -2 \\
+        -2 \\
+        1 \\
+    \end{bmatrix*}$ is an eigenvector. When $\lambda = 36$,
+    
+    \begin{center}
+        \begin{math}
+            (\mathbf{A}\mathbf{A}^{H} - \lambda\mathbf{I})\mathbf{x} = 
+                \begin{bmatrix*}[r]
+                    -11 & -26 & -2 \\
+                    -26 & 4 & 28 \\
+                    -2 & 28 & 16 \\ 
+                \end{bmatrix*} \mathbf{x}
+                =\mathbf{0}.
+        \end{math}
+    \end{center}
+
+    Using row reduction we find $\mathbf{x} =     
+    \begin{bmatrix*}[r]
+        2 \\
+        -1 \\
+        2 \\
+    \end{bmatrix*}$ is an eigenvector. When $\lambda = 81$,
+    
+    \begin{center}
+        \begin{math}
+            (\mathbf{A}\mathbf{A}^{H} - \lambda\mathbf{I})\mathbf{x} = 
+                \begin{bmatrix*}[r]
+                    -56 & -26 & -2 \\
+                    -26 & -41 & 28 \\
+                    -2 & 28 & -29 \\ 
+                \end{bmatrix*} \mathbf{x}
+                =\mathbf{0}.
+        \end{math}
+    \end{center}
+
+    Using row reduction we find $\mathbf{x} =     
+    \begin{bmatrix*}[r]
+        -1 \\
+        2 \\
+        2 \\
+    \end{bmatrix*}$ is an eigenvector. Then $\mathbf{U}$ is a matrix of
+    the unit normalized eigenvectors. Thus, $\mathbf{U} =
+    \begin{bmatrix*}[r]
+        -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} \\
+        \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} \\
+        \frac{2}{3} & \frac{2}{3} & -\frac{1}{3} \\
+    \end{bmatrix*}$ and $\mathbf{U}^{H} =     
+    \begin{bmatrix*}[r]
+        -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} \\
+        \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} \\
+        \frac{2}{3} & \frac{2}{3} & -\frac{1}{3} \\
+    \end{bmatrix*}$.
+
+    \bigskip
+
+    The eigenvalues of $\mathbf{A}^{H}\mathbf{A}$ are given by
+
+    \begin{center}
+        \begin{math}
+            \left\lvert \mathbf{A}^{H}\mathbf{A} - \lambda\mathbf{I} \right\rvert = 
+                \begin{vmatrix*}[r]
+                        28-\lambda & 0 \\
+                        0 & 83-\lambda \\
+                \end{vmatrix*}
+                =(28 - \lambda)(83 - \lambda)= 0.
+        \end{math}
+    \end{center}
+
+    Thus, $\lambda = 28$, or $\lambda = 83$. When $\lambda = 28$,
+
+    \begin{center}
+        \begin{math}
+            (\mathbf{A}^{H}\mathbf{A} - \lambda\mathbf{I})\mathbf{x} = 
+                \begin{bmatrix*}[r]
+                        0 & 0 \\
+                        0 & 55 \\
+                \end{bmatrix*} \mathbf{x}
+                =\mathbf{0}.
+        \end{math}
+    \end{center}
+
+    Thus, $\mathbf{x} =                 
+    \begin{bmatrix*}[r]
+        1 \\
+        0 \\
+    \end{bmatrix*}$ is an eigenvector. When $\lambda = 83$,
+
+    \begin{center}
+        \begin{math}
+            (\mathbf{A}^{H}\mathbf{A} - \lambda\mathbf{I})\mathbf{x} = 
+                \begin{bmatrix*}[r]
+                        -55 & 0 \\
+                        0 & 0 \\
+                \end{bmatrix*} \mathbf{x}
+                =\mathbf{0}.
+        \end{math}
+    \end{center}
+
+    Thus, $\mathbf{x} =                 
+    \begin{bmatrix*}[r]
+        0 \\
+        1 \\
+    \end{bmatrix*}$ is an eigenvector. Thus, $\mathbf{V} =     
+    \begin{bmatrix*}[r]
+        0 & 1 \\
+        1 & 0 \\
+    \end{bmatrix*}$.
+    Then
+    \begin{center}
+        \begin{math}
+            \mathbf{\Sigma} = \mathbf{U}^{H}\mathbf{A}\mathbf{V} = 
+                \begin{bmatrix*}[r]
+                    -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} \\
+                    \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} \\
+                    \frac{2}{3} & \frac{2}{3} & -\frac{1}{3} \\
+                \end{bmatrix*}
+                \begin{bmatrix*}[r]
+                    4 & -3 \\
+                    -2 & 6 \\
+                    4 & 6 \\ 
+                \end{bmatrix*}
+                \begin{bmatrix*}[r]
+                    0 & 1 \\
+                    1 & 0 \\
+                \end{bmatrix*}.
+        \end{math}
+    \end{center}
+
+    As 
+    \begin{math}
+        \mathbf{V} =
+            \begin{bmatrix*}[r]
+                0 & 1 \\
+                1 & 0 \\
+            \end{bmatrix*},
+    \end{math}
+    $\mathbf{V}\mathbf{x} = \mathbf{0}$ has one solution namely $\mathbf{x} = \mathbf{0}$.
+    Thus the null space of $\mathbf{A}$ is $\mathbf{0}$.
+\end{solution}
+
+\section*{Problem Set Ch-2}
+
+\begin{problem}{2.5}
+    Write a program to implement the reverse Cuthill-McKee algorithm for Symmetric matrices.
+\end{problem}
+
+\begin{solution}
+    Solution can be found in CuthillMcKee.ipynb.
+\end{solution}
+
+\begin{problem}{2.6}
+    Use the Cuthill-McKee algorithm to reorder the verticies in the circular
+    graph layout of the bottlenose dolphin network in the example on page 49.
+\end{problem}
+
+\begin{solution}
+    Solution can be found in CuthillMcKee.ipynb.
+\end{solution}
+
+\end{document}

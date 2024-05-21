@@ -1,0 +1,473 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,graphicx,enumitem}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage[margin=1in]{geometry}
+
+% Define a new theorem style
+\newtheoremstyle{bolddef}
+  {\topsep}         % Space above
+  {\topsep}         % Space below
+  {\itshape}        % Body font
+  {}                % Indent amount
+  {\bfseries}       % Theorem head font
+  {:}               % Punctuation after theorem head
+  {.5em}            % Space after theorem head
+  {\thmnote{#3}}    % Theorem head spec (can be left empty, meaning `normal')
+\newtheorem*{theorem}{Theorem}
+
+% Use the new theorem style
+\theoremstyle{bolddef}
+\newtheorem*{definition}{}
+
+\newcounter{count}
+
+\newcommand{\clabel}[1]{
+  \refstepcounter{count}\label{#1}
+}
+
+\begin{document}
+
+\section*{Definitions}
+
+\subsection*{Chapter 1}
+
+\begin{definition}[Vector]
+    A vector is a single element of a vector space.
+\end{definition}
+
+\begin{definition}[Vector Space]
+    A set $\mathit{V}$ that is closed under linear combinations of its elements called vectors over a field $\mathbb{F}$.
+\end{definition}
+
+\begin{definition}[Subspace]
+    A subset of a vector space.
+\end{definition}
+
+\begin{definition}[Span]
+    The set of all linear combinations of a set of vectors
+\end{definition}
+
+\begin{definition}[Linearly Independent]
+    Given a set of vectors $\{\mathbf{v_1}, \mathbf{v_2}, \ldots, \mathbf{v_n}\}$ of a vector space
+    $\mathit{V}$, the set of vectors is linearly independent if all linear combinations
+    are unique. That is, $\alpha_1 \mathbf{v_1} + \alpha_2 \mathbf{v_2}, \ldots + \alpha_n \mathbf{v_n} = 0$
+    if and only if $\alpha_1, \alpha_2, \ldots, \alpha_n$ are all 0.
+\end{definition}
+
+\begin{definition}[Linearly Dependent]
+    A set of vectors is linearly dependent if they are not linearly independent.
+\end{definition}
+
+\begin{definition}[Basis of a Vecotor Space]
+    A basis of a vector space $\mathit{V}$ is a linearly independent spanning set of vectors of $\mathit{V}$.
+\end{definition}
+
+\begin{definition}[Dimension of a Vecotor Space]
+    The number of elements in the basis of the vector space.
+\end{definition}
+
+\begin{definition}[Linear Map]
+    Given vector spaces $\mathit{V}$ and $\mathit{W}$ over $\mathbb{C}$, a linear map from
+    $\mathit{V}$ onto $\mathit{W}$ is a function $\mathit{f}:\mathit{V} \to \mathit{W}$
+    such that $\mathit{f}(\alpha \mathbf{x} + \beta \mathbf{y}) = \alpha \mathit{f}(\mathbf{x}) + \beta \mathit{f}(\mathbf{y})$
+    for all $\alpha, \beta \in \mathbb{C}$ and $\mathbf{x}, \mathbf{y} \in \mathit{V}$.
+\end{definition}
+
+\begin{definition}[Matrix Transpose]
+    Given a $m \times n$ matrix $\mathbf{A}$, $\mathbf{A}^{T}$ is the $n \times m$
+    matrix obtained by swapping the rows of $\mathbf{A}$ with the columns of $\mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Matrix Adjoint]
+    Given a $m \times n$ matrix $\mathbf{A}$, $\mathbf{A}^{H}$ is the $n \times m$
+    matrix obtained by swapping the rows of $\mathbf{A}$ with the columns of the complex conjugate of $\mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Column Space]
+    Given a matrix $\mathbf{A} \in \mathbb{C}^{m \times n}$, the column space is the
+    subspace of $\mathbb{C}^{m}$ spanned by the columns of $\mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Rank]
+    Given a matrix $\mathbf{A} \in \mathbb{C}^{m \times n}$, the rank of $\mathbf{A}$ is the dimension of 
+    the column space of $\mathbf{A}$ or the dimension of the row space of $\mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Null Space]
+    Given a matrix $\mathbf{A} \in \mathbb{C}^{m \times n}$, the null space or kernel of 
+    $\mathbf{A}$ is the subspace of $\mathbb{C}^{n}$ spanned by the vectors $\mathbf{x} \in \mathbb{C}^{n}$
+    such that $\mathbf{A} \mathbf{x}  = \mathbf{0}$.
+\end{definition}
+
+\begin{definition}[Nullity]
+    Given a matrix $\mathbf{A} \in \mathbb{C}^{m \times n}$, the nullity of $\mathbf{A}$
+    is the dimension of the null space of $\mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Row Space]
+    Given a matrix $\mathbf{A} \in \mathbb{C}^{m \times n}$, the row space is the
+    subspace of $\mathbb{C}^{n}$ spanned by the columns of $\mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Left Null Space]
+    Given a matrix $\mathbf{A} \in \mathbb{C}^{m \times n}$, the left null space of 
+    $\mathbf{A}$ is the subspace of $\mathbb{C}^{m}$ spanned by the vectors $\mathbf{x} \in \mathbb{C}^{m}$
+    such that $\mathbf{x} \mathbf{A} = \mathbf{0}$. That is the left null space of $\mathbf{A}$ is the null space
+    of $\mathbf{A}^{T}$.
+\end{definition}
+
+\begin{definition}[Eigenvalue]
+    Given a square matrix $\mathbf{A}$, an eigenvalue is the scalar $\lambda$, such that $\mathbf{A} \mathbf{x}= \lambda \mathbf{x}$
+    has a nontrivial solution.
+\end{definition}
+
+\begin{definition}[Eigenvector]
+    Given a square matrix $\mathbf{A}$ and an eigenvalue $\lambda$, an eigenvector is any nontrivial vector $\mathbf{x}$, satisfying
+    $\mathbf{A} \mathbf{x}= \lambda \mathbf{x}$.
+\end{definition}
+
+\begin{definition}[Eigenspace]
+    The set of eigenvectors associated with an eigenvalue.
+\end{definition}
+
+\begin{definition}[Invariant]
+    A subspace $\mathit{S}$ is invariant with respect to a square matrix $\mathbf{A}$
+    if $\mathbf{A}\mathit{S} \subseteq \mathit{S}$.
+\end{definition}
+
+\begin{definition}[Spectrum]
+    Given a square matrix $\mathbf{A}$, the spectrum of $\mathbf{A}$ is the set of eigenvalues $\{\lambda_1, \lambda_2, \ldots, \lambda_n\}$
+    of $\mathbf{A}$ denoted $\lambda(\mathbf{A})$.
+\end{definition}
+
+\begin{definition}[Spectral Radius]
+    Given a square matrix $\mathbf{A}$, the spectral radius of $\mathbf{A}$ is the largest
+    absolute value of its eigenvalues denoted $\rho(\mathbf{A})$.
+\end{definition}
+
+\begin{definition}[Similar Matrices]
+    Given two square matrices $\mathbf{A}$ and $\mathbf{\tilde{A}}$,
+    they are similar if there exists a matrix $\mathbf{C}$ such that
+    $\mathbf{A} = \mathbf{C} \mathbf{\tilde{A}} \mathbf{C}^{-1}$.
+\end{definition}
+
+\begin{definition}[Similarity Transform]
+    Given two similar square matrices $\mathbf{A}$ and $\mathbf{\tilde{A}}$,
+    $\mathbf{A} = \mathbf{C} \mathbf{\tilde{A}} \mathbf{C}^{-1}$ is the similarity transform.
+\end{definition}
+
+\begin{definition}[Unitarily Similar Matrices]
+    Given two similar square matrices $\mathbf{A}$ and $\mathbf{\tilde{A}}$,
+    if the matrix $\mathbf{C}$ such that $\mathbf{A} = \mathbf{C} \mathbf{\tilde{A}} \mathbf{C}^{-1}$
+    is a unitary matrix then $\mathbf{A}$ and $\mathbf{\tilde{A}}$ are unitarily similar.
+\end{definition}
+
+\begin{definition}[Nondefective]
+    A matrix with a complete set of eigenvectors.
+\end{definition}
+
+\begin{definition}[Diagonalization]
+    For a nondefective matrix $\mathbf{A}$, the diagonalization of $\mathbf{A}$ is $\mathbf{A} = \mathbf{S} \mathbf{\Lambda} \mathbf{S}^{-1}$
+    where $\mathbf{S}$ is a matrix of the eigenvectors and $\mathbf{\Lambda}$ is the diagonal matrix of the eigenvalues.
+    That is, $\mathbf{A}$ is similar to $\mathbf{\Lambda}$.
+\end{definition}
+
+\begin{definition}[Symmetric Matrix]
+    A matrix $\mathbf{A}$ such that, $\mathbf{A} = \mathbf{A}^{T}$.
+\end{definition}
+
+\begin{definition}[Hermitian Matrix]
+    A matrix $\mathbf{A}$ such that, $\mathbf{A} = \mathbf{A}^{H}$.
+\end{definition}
+
+\begin{definition}[Positive Definite Matrix]
+    A Hermitian matrix $\mathbf{A}$ such that, $\mathbf{x}^{H} \mathbf{A} \mathbf{x} > 0$
+    for any nonzero vector $\mathbf{x}$.
+\end{definition}
+
+\begin{definition}[Orthogonal Matrix]
+    A matrix $\mathbf{A}$ such that, $\mathbf{A}^{T} \mathbf{A} = \mathbf{I}$.
+\end{definition}
+
+\begin{definition}[Unitary Matrix]
+    A matrix $\mathbf{A}$ such that, $\mathbf{A}^{H} \mathbf{A} = \mathbf{I}$.
+\end{definition}
+
+\begin{definition}[Permutation Matrix]
+    An orthongonal matrix whose columns are permutations of the identity matrix.
+\end{definition}
+
+\begin{definition}[Normal Matrix]
+    A matrix $\mathbf{A}$ such that, $\mathbf{A}^{H} \mathbf{A} = \mathbf{A} \mathbf{A}^{H}$. Unitary and Hermitian
+    matrices are normal matrices.
+\end{definition}
+
+\begin{definition}[Projection Matrix]
+    A matrix $\mathbf{A}$ such that, $\mathbf{A}^{2} = \mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Orthogonal Projection Matrix]
+    A matrix $\mathbf{A}$ such that, $\mathbf{A}^{2} = \mathbf{A}$ and $\mathbf{A}^{T} = \mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Diagonal Matrix]
+    A matrix $\mathbf{A}$ such that, entries $a_{ij} = 0$ for $i \neq j$.
+\end{definition}
+
+\begin{definition}[Upper Triangular Matrix]
+    A matrix $\mathbf{A}$ such that, entries $a_{ij} = 0$ for $i > j$.
+\end{definition}
+
+\begin{definition}[Tridiagonal Matrix]
+    A matrix $\mathbf{A}$ such that, $a_{ij} = 0$ for $\left\lvert i - j \right\rvert > 1$.
+\end{definition}
+
+\begin{definition}[Banded Matrix]
+    A matrix $\mathbf{A}$ such that, $a_{ij} = 0$ for $i - j > m_l$ or $j - i < m_u$.
+\end{definition}
+
+\begin{definition}[Bandwidth]
+    For a banded matrix $\mathbf{A}$, the bandwidth is $m_u + m_l + 1$.
+\end{definition}
+
+\begin{definition}[Upper Hessenberg Matrix]
+    A matrix $\mathbf{A}$ such that, $a_{ij} = 0$ for $i > j + 1$.
+\end{definition}
+
+\begin{definition}[Spectral Decomposition]
+    Given a real symmetric matrix $\mathbf{A}$, the spectral decomposition is $\mathbf{A} = \mathbf{Q}\mathbf{\Lambda }\mathbf{Q}^{H}$ where $\mathbf{Q}$ is a unitary
+    matrix of the eigenvectors and $\mathbf{\Lambda}$ is the diagonal matrix of the eigenvalues.
+\end{definition}
+
+\begin{definition}[Singular Value Decomposition]
+    Given a  $m \times n$ matrix $\mathbf{A}$, there exists a unitary $m \times m$ matrix $\mathbf{U}$ and 
+    a unitary $n \times n$ matrix $\mathbf{V}$ such that $\mathbf{U}^{H}\mathbf{A}\mathbf{V} = \mathbf{\Sigma} = diag(\sigma_1, \sigma_2, \ldots, \sigma_n)$
+    which is the Singular Value Decomposition or SVD of $\mathbf{A}$.
+\end{definition}
+
+\begin{definition}[Singular Values of a Matrix]
+    Given a SVD of a matrix $\mathbf{A}$, each $\sigma_i$ is a singular value and given
+    by $\sigma_i(A) = \sqrt{\lambda_i (\mathbf{A}^{H}\mathbf{A})}$.
+\end{definition}
+
+\begin{definition}[Inner Product]
+    Given a vector space $\mathit{V}$, an inner product is any map $(\cdot, \cdot)$
+    from $\mathit{V}\times \mathit{V}$ into $\mathbb{C}$ satisfying 
+    linearity, Hermiticity, and positive definiteness.
+\end{definition}
+
+\begin{definition}[Orthogonal]
+    Given two vectors $\mathbf{u}$ and $\mathbf{v}$, they are orthongonal if $(\mathbf{u}, \mathbf{v})=0$.
+\end{definition}
+
+\begin{definition}[Euclidean Inner Product]
+    Given two vectors $\mathbf{u}$ and $\mathbf{v}$, the Euclidean inner product is 
+    ${(\mathbf{u}, \mathbf{v})}_2= \mathbf{u}^{T}\mathbf{v}$.
+\end{definition}
+
+\begin{definition}[A-Energy Inner Product]
+    Given two vectors $\mathbf{u}$ and $\mathbf{v}$ and a symmetric, positive definite matrix $\mathbf{A}$, 
+    the A-energy inner product is ${(\mathbf{u}, \mathbf{v})}_{\mathbf{A}} = \mathbf{u}^{T}\mathbf{A}\mathbf{v}$.
+\end{definition}
+
+\begin{definition}[Vector Norm]
+    Given a vector space $\mathit{V}$, a vector norm is any map $\left\lVert \cdot \right\rVert$
+    from $\mathit{V}$ into $\mathbb{R}$ satisfying positivity, homogeneity, and subadditivity.
+\end{definition}
+
+\begin{definition}[P-Norm]
+    Given a vector space $\mathit{V}$ and a vector $\mathbf{u}$,
+    ${\left\lVert \mathbf{u} \right\rVert}_p = {(\sum_{i = 1}^{n} {\left\lvert \mathbf{u}_{i} \right\rvert}^{p} )}^{1/p}$ for $1 \leq p < \infty$.
+\end{definition}
+
+\begin{definition}[Euclidean Norm]
+    Given a vector space $\mathit{V}$ and a vector $\mathbf{u}$,
+    ${\left\lVert \mathbf{u} \right\rVert}_2 = {(\sum_{i = 1}^{n} {\left\lvert \mathbf{u}_{i} \right\rvert}^{2} )}^{1/2} = \sqrt{{(\mathbf{u}, \mathbf{u})}_2}$.
+\end{definition}
+
+\begin{definition}[$\infty$-Norm]\
+    Given a vector space $\mathit{V}$ and a vector $\mathbf{u}$,
+    ${\left\lVert \mathbf{u} \right\rVert}_\infty = \max_{i = 1}^{n} {\left\lvert \mathbf{u}_{i} \right\rvert}$.
+\end{definition}
+
+\begin{definition}[Energy Norm]
+    Given a vector space $\mathit{V}$ and a vector $\mathbf{u}$,
+    ${\left\lVert \mathbf{u} \right\rVert}_\mathbf{A} = \sqrt{{(\mathbf{u}, \mathbf{u})}_\mathbf{A}}$ where $\mathbf{A}$ is symmetric, positive definite.
+\end{definition}
+
+\begin{definition}[Cauchy-Schwarz Inequality for a Norm]
+    Given a vector space $\mathit{V}$ and two vectors $\mathbf{u}$ and $\mathbf{v}$, then we have
+    $(\mathbf{u}, \mathbf{v}) \leq \left\lVert \mathbf{u} \right\rVert \left\lVert \mathbf{v} \right\rVert$.
+\end{definition}
+
+\begin{definition}[Matrix Norm]
+    Any map $\left\lVert \cdot \right\rVert$
+    from $\mathbb{R}^{m \times n}$ into $\mathbb{R}$ satisfying positivity, homogeneity, and subadditivity.
+\end{definition}
+
+\begin{definition}[Compatible]
+    A matrix norm is compatible with a vector norm if 
+    $\left\lVert \mathbf{A} \mathbf{x} \right\rVert \leq \left\lVert \mathbf{A} \right\rVert \left\lVert \mathbf{x} \right\rVert$
+    for all $\mathbf{x} \in \mathbb{R}^n$.
+\end{definition}
+
+\begin{definition}[Induced Matrix Norm]
+    The smallest matrix norm that is compatible with a vector norm.
+\end{definition}
+
+\begin{definition}[Positive Definite Matrix]
+    A matrix $\mathbf{A}$ such that $\mathbf{x}^{T} \mathbf{A} \mathbf{x} > 0$ for all $\mathbf{x} \neq 0$.
+\end{definition}
+
+\begin{definition}[Negative Definite Matrix]
+    A matrix $\mathbf{A}$ such that $\mathbf{x}^{T} \mathbf{A} \mathbf{x} < 0$ for all $\mathbf{x} \neq 0$.
+\end{definition}
+
+\begin{definition}[Congruent Matrices]
+    Given two matrices $\mathbf{A}$ and $\mathbf{B}$, $\mathbf{A}$ is congruent
+    to $\mathbf{B}$ if there exists an invertible matrix $\mathbf{S}$
+    such that $\mathbf{B} = \mathbf{S}^{T} \mathbf{A}\mathbf{S}$.
+\end{definition}
+
+\begin{definition}[Quadratic Form of a Matrix]
+    Given a real, Symmetric, square matrix $\mathbf{A}$, $q(\mathbf{x}) = \mathbf{x}^{T} \mathbf{A} \mathbf{x}$.
+\end{definition}
+
+\begin{definition}[Well-Posed]
+    A problem is well-posed if a solution for the problem exists, the solution
+    is unique, and the solution is stable under small perturbations in the data.
+\end{definition}
+
+\begin{definition}[Ill-Posed]
+    A problem that is not well-posed.
+\end{definition}
+
+\subsection*{Chapter 2}
+
+\begin{definition}[Gaussian Elimination]
+    The process of using elementary row operations to convert a system of equations into an
+    equivalent upper triangular representation of the system of equations.
+\end{definition}
+
+\begin{definition}[LU Decomposition]
+    For a matrix $\mathbf{A}$, an LU decomposition is a 
+    unit lower triangular matrix $\mathbf{L}$ and an upper triangular
+    matrix $\mathbf{U}$ such that $\mathbf{A} = \mathbf{L}\mathbf{U}$.
+\end{definition}
+
+\begin{definition}[Linear Programming]
+    An optimization technique used on a system of linear constraints and a linear
+    objective function to find the optimal solution.
+\end{definition}
+
+\begin{definition}[Basic Variables]
+    A variable in the basic solution. The value is not typically 0.
+\end{definition}
+
+\begin{definition}[Nonbasic Variables]
+    A variable not in the basic solution. Set the value to 0 for the basic feasible solution.
+\end{definition}
+
+\begin{definition}[Primal Linear Programming Problem]
+    The standard form of a linear programming problem. The general form is the following:
+    Find the maximum of the objective function $z = \mathbf{c}^{T}\mathbf{x}$ subject to
+    constraint $\mathbf{A}\mathbf{x} \leq \mathbf{b}$ and nonnegativity restriction $\mathbf{x}$, $\mathbf{b} \geq 0$.
+\end{definition}
+
+\begin{definition}[Dual Linear Programming Problem]
+    Every variable of the primal problem is a constraint in the dual, and every constraint of the primal is 
+    a variable in the dual. The general form is the following:
+    Find the minimum of the objective function $z = \mathbf{b}^{T}\mathbf{y}$ subject to
+    constraint $\mathbf{A}^{T}\mathbf{y} \geq \mathbf{c}$ and nonnegativity restriction $\mathbf{y}$, $\mathbf{c} \geq 0$.
+\end{definition}
+
+\begin{definition}[Sparse Matrix]
+    A matrix with enough 0s that it is computationally efficient to take advantage of them.
+\end{definition}
+
+\begin{definition}[Compressed Sparse Column]
+    A data structure that only saves pointers to where new columns begin.
+\end{definition}
+
+\begin{definition}[Laplacian Matrix]
+    A matrix such that $\mathbf{L}=\mathbf{D}-\mathbf{A}$ where $\mathbf{D}$ is
+    the degree matrix and $\mathbf{A}$ is the adjacency matrix.
+\end{definition}
+
+
+\section*{Theorems}
+
+\subsection*{Chapter 1}
+
+\clabel{SchurDecomp}
+\begin{theorem}[\ref{SchurDecomp}]
+    Schur Decomposition. Every square matrix is unitarily Similar to an 
+    upper triangular matrix. That is, given $\mathbf{A}$, there exists a 
+    unitary matrix $\mathbf{U}$ and an upper triangular matrix $\mathbf{T}$
+    such that $\mathbf{T}=\mathbf{U}^{H} \mathbf{A} \mathbf{U}$. Further,
+    the diagonal elements of $\mathbf{T}$ are the eigenvalues of $\mathbf{A}$.
+\end{theorem}
+
+\clabel{SpectralThm}
+\begin{theorem}[\ref{SpectralThm}]
+    Spectral theorem. If $\mathbf{A}$ is a normal matrix ($\mathbf{A}^{H}\mathbf{A}=\mathbf{A}\mathbf{A}^{H}$),
+    then $\mathbf{A}=\mathbf{U}\mathbf{\Lambda}\mathbf{U}^{H}$ where $\mathbf{U}$ is a unitary
+    matrix whose columns are eigenvalues of $\mathbf{A}$ and $\mathbf{\Lambda }$
+    is a diagonal matrix whose elements are the eigenvalues of $\mathbf{A}$. Further,
+    the eigenvalues of a Hermitian matrix are real.
+\end{theorem}
+
+\clabel{MatrixNorms}
+\begin{theorem}[\ref{MatrixNorms}]
+    An induced norm is compatible with its associated vector norm. An 
+    induced norm of the identity matrix is one. An induced norm is submultiplicative.
+\end{theorem}
+
+\clabel{SpectralNorm}
+\begin{theorem}[\ref{SpectralNorm}]
+    $\left\lVert \mathbf{A}\right\rVert_{2}$ equals the largest Singular
+    value of $\mathbf{A}$. If $\mathbf{A}$ is Hermitian, then 
+    $\left\lVert \mathbf{A}\right\rVert_{2}$ equals the spectral radius of 
+    $\mathbf{A}$. If $\mathbf{A}$ is unitary then $\left\lVert \mathbf{A}\right\rVert_{2}=1$.
+\end{theorem}
+
+\clabel{SpectralRadii}
+\begin{theorem}[\ref{SpectralRadii}]
+    $\rho(\mathbf{A}) \leq \left\lVert \mathbf{A}\right\rVert$ where
+    $\left\lVert \cdot \right\rVert$ is an induced norm. Further, for
+    symmetric matrices, $\left\lVert \mathbf{A}\right\rVert_{\max} \leq \rho(\mathbf{A})$
+    where the max norm $\left\lVert \mathbf{A}\right\rVert_{\max} = \max_{i,j} \left\lvert {a_{i,j}} \right\rvert$.
+\end{theorem}
+
+\clabel{PositiveDefinite}
+\begin{theorem}[\ref{PositiveDefinite}]
+    A symmetric matrix is postive definite if and only if it has only positive eigenvalues.
+\end{theorem}
+
+\subsection*{Chapter 2}
+
+\clabel{CholeskyDecomposition}
+\begin{theorem}[\ref{CholeskyDecomposition}]
+    A symmetric, postive definite matrix $\mathbf{A}$ has the decomposition 
+    $\mathbf{R}^{T}\mathbf{R}$ where $\mathbf{R} = \mathbf{L}\mathbf{D}^{1/2}$.
+\end{theorem}
+
+\clabel{LinearProgramming}
+\begin{theorem}[\ref{LinearProgramming}]
+    The maxima of a linear functional over a convex polytope occur at its verticies.
+    If the values are at k verticies, then they must be along the k-cell between them.
+\end{theorem}
+
+\clabel{StrongDuality}
+\begin{theorem}[\ref{StrongDuality}]
+    Given a linear programming problem there exists two related formulations,
+    the primal problem and the dual problem, with four possibilities. The possibilities
+    are the following: both the primal and the dual are infeasible, the primal is infeasible
+    and the dual is unbounded, the dual is infeasible and the primal is unbounded, or both
+    the primal and the dual have feasible solutions and their values are the same.
+\end{theorem}
+
+
+\end{document}
+
